@@ -44,7 +44,7 @@ class RegisterConfirmationService implements RegisterConfirmationServiceInterfac
 
             $this->mailer->send($templatedEmail);
         } catch (\Throwable $throwable) {
-            $this->logger->error('Some message from exception: ' . $throwable->getMessage());
+            $this->logger->debug('Some message from exception: ' . $throwable->getMessage());
 
             throw new RegisterConfirmationServiceException($throwable->getMessage());
         }

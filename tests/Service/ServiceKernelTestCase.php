@@ -11,11 +11,12 @@ class ServiceKernelTestCase extends KernelTestCase
 {
     protected const TEST_EMAIL = 'some-test-email-2@openmobi.pl';
 
-    protected $registerConfirmationService;
+    protected RegisterConfirmationService $registerConfirmationService;
 
     protected function setUp(): void
     {
-        self::bootKernel();
-        $this->registerConfirmationService = self::$container->get(RegisterConfirmationService::class);
+        $container = self::getContainer();
+
+        $this->registerConfirmationService = $container->get(RegisterConfirmationService::class);
     }
 }

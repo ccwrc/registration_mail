@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Service\RegisterConfirmation;
 
+use App\Service\RegisterConfirmation\RegisterConfirmationServiceException;
 use App\Tests\Service\ServiceKernelTestCase;
 use App\ValueObject\EmailAddress;
 
@@ -15,5 +16,15 @@ class RegisterConfirmationServiceTest extends ServiceKernelTestCase
         $emailAddress = new EmailAddress(self::TEST_EMAIL);
 
         $this->assertTrue($service->sendMail($emailAddress));
+    }
+
+    public function testSendEmailException(): void
+    {
+        $service = $this->registerConfirmationService;
+        $emptyEmailAddress = $this->createMock(EmailAddress::class);
+
+        $this->expectException(RegisterConfirmationServiceException::class);
+        $this->expectExceptionMessage('Email "" does not comply with addr-spec of RFC 2822.');
+        $service->sendMail($emptyEmailAddress);
     }
 }

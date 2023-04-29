@@ -16,10 +16,12 @@ interface RegisterConfirmationServiceInterface
     public const EMAIL_MESSAGE = 'Standard content of the confirmation of registration on the service.';
 
     /**
-     * @param EmailAddress $emailAddress
+     * Sends an e-mail confirming registration on the service.
+     *
+     * @param EmailAddress $emailAddress Recipient.
      *
      * @return bool TRUE if success.
-     * @throws RegisterConfirmationServiceException
+     * @throws RegisterConfirmationServiceException If sending fails.
      */
     public function sendMail(EmailAddress $emailAddress): bool;
 }
