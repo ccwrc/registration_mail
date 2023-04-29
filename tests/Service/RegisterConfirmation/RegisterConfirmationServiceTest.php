@@ -12,10 +12,13 @@ class RegisterConfirmationServiceTest extends ServiceKernelTestCase
 {
     public function testSendEmail(): void
     {
+        $expectedEmailCount = 1;
+
         $service = $this->registerConfirmationService;
         $emailAddress = new EmailAddress(self::TEST_EMAIL);
 
         $this->assertTrue($service->sendMail($emailAddress));
+        self::assertEmailCount($expectedEmailCount);
     }
 
     public function testSendEmailException(): void
